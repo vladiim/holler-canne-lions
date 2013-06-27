@@ -8,59 +8,76 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
 	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/main.css" rel="stylesheet" />
 </head>
 <body class="container">
-	<header>
-		<h1>Cyber Lions</h1>
-	</header>
 
-	<!-- oreo thumb -->
-	<article class='row'>
-		<div class='span12'>
-			<div class='span3'>
-				<h4>Oreo Daily Twist</h4>
-				<div class='well'>
-					<a href="#oreo" data-toggle='modal'><img src="img/oreo.png"></a>
-				</div>
-			</div>
-		</div>
-	</article>
-	<!-- end oreo thumb -->
+  <% categories.each do |category| %>
 
-	<!-- oreo modal -->
-    <div id="oreo" class='modal hide fade' tabindex='-1' aria-labelleby='Oreo Daily Twist' aria-hidden='true'>
-    	<div class='modal-header'>
-    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    		<h3>Oreo Daily Twist</h3>
-    	</div>
+		<header>
+			<h1><%= category.title %></h1>
+		</header>
 
-	    <div class="modal-body row">
-	    	<div class='span5'>
-	    		<ul>
-	    			<li>
-	    				<p><strong>Agency</strong> DRAFTFCB New York, USA</p>
-	    			</li>
-	    			<li>
-	    				<p><strong>Category</strong> Viral Advertising</p>
-	    			</li>
-	    			<li>
-	    				<p><strong>Brief</strong> Use a centennial anniversary to  rejuvenate OREO.</p>
-	    			</li>
-	    			<li>
-	    				<p><strong>Solution</strong> 100 ads in 100 days. Ads integrated Oreo into trending topics.</p>
-	    			</li>
-	    			<li>
-	    				<p><strong>Results</strong> 433 million Facebook views with +280% increase in Shares, creating 231 million media impressions and making OREO the brand with the highest buzz increase in 2012 (+49%).</p>
-	    			</li>
-	    		</ul>
-	    	</div>
+	  <section class='row'>
 
-	    	<div class='span3'>
-	      		<iframe width="560" height="315" src="http://www.youtube.com/embed/ZDSc0V3AEnk" frameborder="0" allowfullscreen></iframe>
-	    	</div>
-	    </div>
-    </div>
-	<!-- end oreo modal -->
+		  <% category.winners.each do |winner| %>
+
+				<!-- <%= winner.id %> thumb -->
+				<article>
+					<div>
+						<div class='span3'>
+							<h4><%= winner.title %></h4>
+							<div class='well'>
+								<a href="#<%= winner.id %>" data-toggle='modal'><img class='thumb' src="<%= winner.thumb %>"></a>
+							</div>
+						</div>
+					</div>
+				</article>
+				<!-- end <%= winner.id %> thumb -->
+
+				<!-- <%= winner.id %> modal -->
+			    <div id="<%= winner.id %>" class='modal hide fade' tabindex='-1' aria-labelleby='<%= winner.title %>' aria-hidden='true'>
+			    	<div class='modal-header'>
+			    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    		<h3><%= winner.title %></h3>
+			    	</div>
+
+				    <div class="modal-body row">
+				    	<div class='span5'>
+				    		<ul>
+				    			<li>
+				    				<p><strong>Client</strong> <%= winner.client %></p>
+				    			</li>
+				    			<li>
+				    				<p><strong>Agency</strong> <%= winner.agency %></p>
+				    			</li>
+				    			<li>
+				    				<p><strong>Category</strong> <%= winner.category %></p>
+				    			</li>
+				    			<li>
+				    				<p><strong>Brief</strong> <%= winner.brief %></p>
+				    			</li>
+				    			<li>
+				    				<p><strong>Solution</strong> <%= winner.solution %></p>
+				    			</li>
+				    			<li>
+				    				<p><strong>Results</strong> <%= winner.results %></p>
+				    			</li>
+				    		</ul>
+				    	</div>
+
+				    	<div class='span3'>
+				      		<iframe width="560" height="315" src="<%= winner.youtube %>" frameborder="0" allowfullscreen></iframe>
+				    	</div>
+				    </div>
+			    </div>
+				<!-- end <%= winner.id %> modal -->
+
+		  <% end %>
+
+	  </section>
+
+  <% end %>
 
 	<!-- inc after page loads -->
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
