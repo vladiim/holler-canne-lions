@@ -4,18 +4,13 @@ Dir["#{Dir.pwd}/lib/models/*.rb"].each { |file| require file }
 Dir["#{Dir.pwd}/lib/data/*.rb"].each { |file| require file }
 
 # Start app
-# $ ruby app.rb
-
-# All you have to do for reloading is instead do this:
-# $ rerun 'ruby app.rb'
-
-# If you are for instance using rackup, instead do the following:
-# $ rerun 'rackup'
+# $ shotgun configu.ru
 
 # ---------------- # CYBER LIONS # ---------------- #
 
 oreo = Winner.new.tap do |w|
-  w.title    = 'Oreo Daily Twist'
+  w.title    = 'Daily Twist'
+  w.prize    = 'Grand Prix - Cyber'
   w.id       = 'oreo'
   w.client   = 'Oreo'
   w.thumb    = '/img/oreo.png'
@@ -29,6 +24,7 @@ end
 
 intel = Winner.new.tap do |w|
   w.title    = 'The Beauty Inside'
+  w.prize    = 'Grand Prix - Cyber'
   w.id       = 'intel'
   w.client   = "Intel + Toshiba"
   w.thumb    = '/img/intel.png'
@@ -42,6 +38,7 @@ end
 
 geox = Winner.new.tap do |w|
   w.title    = 'Geox Amphibiox'
+  w.prize    = 'Gold - Cyber'
   w.id       = 'geox'
   w.client   = "Geox"
   w.thumb    = '/img/geox.png'
@@ -55,6 +52,7 @@ end
 
 jfk = Winner.new.tap do |w|
   w.title    = 'Clouds over Cuba'
+  w.prize    = 'Gold - Cyber'
   w.id       = 'jfk'
   w.client   = 'The JFK Presidential Library & Museum'
   w.thumb    = '/img/jfk.png'
@@ -68,6 +66,7 @@ end
 
 metro = Winner.new.tap do |w|
   w.title    = 'Dumb ways to die'
+  w.prize    = 'Gold - Cyber'
   w.id       = 'metro'
   w.thumb    = '/img/metro.png'
   w.client   = 'Metro Trains'
@@ -81,6 +80,7 @@ end
 
 nike = Winner.new.tap do |w|
   w.title    = 'Nike + Kinect Training'
+  w.prize    = 'Gold - Cyber'
   w.id       = 'nike'
   w.thumb    = '/img/nike.png'
   w.client   = 'Nike'
@@ -94,6 +94,7 @@ end
 
 adidas = Winner.new.tap do |w|
   w.title    = 'Window Shopping'
+  w.prize    = 'Gold - Cyber'
   w.id       = 'adidas'
   w.thumb    = '/img/adidas.png'
   w.client   = 'Adidas'
@@ -107,6 +108,7 @@ end
 
 dove = Winner.new.tap do |w|
   w.title    = 'Real Beauty Sketches'
+  w.prize    = 'Gold - Cyber'
   w.id       = 'dove'
   w.thumb    = '/img/dove.png'
   w.client   = 'Unilever'
@@ -119,14 +121,37 @@ dove = Winner.new.tap do |w|
 end
 
 cyber = Category.new.tap do |c|
-  c.winners = [oreo, intel, geox, jfk, metro, nike, adidas, dove]
+  # c.winners = [oreo, intel, geox, jfk, metro, nike, adidas, dove] # Mike removed 3
+  c.winners = [oreo, intel, geox, jfk, adidas]
   c.title   = 'Cyber Lions'
+end
+
+# ---------------- # BRANDED CONTENT & ENTERTAINMENT LIONS # ---------------- #
+
+coke = Winner.new.tap do |w|
+  w.title    = 'The Polar Bears Movie'
+  w.prize    = 'Entrant- Branded Content'
+  w.id       = 'coke'
+  w.thumb    = '/img/coke.png'
+  w.client   = 'Coca-Cola'
+  w.agency   = "Creative Artists Agency"
+  w.category = 'Branded Entertainment'
+  w.brief    = 'Tell a story compelling enough to be judged purely as entertainment, while creating characters and a world that would convey their brand values.'
+  w.solution = "Team up with Ridley Scott and re-imagine the world of the Coke Polar Bears."
+  w.results  = '2 million views on YouTube (96% approval rating), thousands of tweets and comments asking for the feature film, 5% sales increase in Europe (closely correlated to Polar Bears).'
+  w.youtube  = '//www.youtube.com/embed/WtxJft7B2ts'
+end
+
+brand = Category.new.tap do |c|
+  c.winners = [coke]
+  c.title   = 'Branded Content & Entertainment Lions'
 end
 
 # ---------------- # INNOVATION LIONS # ---------------- #
 
 cinder = Winner.new.tap do |w|
   w.title    = 'Cinder Software'
+  w.prize    = 'Grand Prix - Innovation'
   w.id       = 'cinder'
   w.thumb    = '/img/cinder.png'
   w.client   = 'NA'
@@ -140,6 +165,7 @@ end
 
 thunderclap = Winner.new.tap do |w|
   w.title    = 'Thunderclap Tech'
+  w.prize    = 'Innovation Lion'
   w.id       = 'thunderclap'
   w.thumb    = '/img/thunderclap.png'
   w.client   = 'NA'
@@ -156,14 +182,101 @@ innovation = Category.new.tap do |c|
   c.title   = 'Innovation Lions'
 end
 
+# ---------------- # MEDIA LIONS # ---------------- #
+
+swebus = Winner.new.tap do |w|
+  w.title    = 'The Train Switch'
+  w.prize    = 'Silver - Media'
+  w.id       = 'swebus'
+  w.thumb    = '/img/swebus.png'
+  w.client   = 'Swebus'
+  w.agency   = "Akestam Holst"
+  w.category = 'Best Use of Digital Media'
+  w.brief    = 'Ease the inevitable delays that come with Swedish public transportation during winter.'
+  w.solution = "A realtime system that converts late train arrivals into bus discounts."
+  w.results  = '6% YoY increase revenue, 3,245 coupons claimed.'
+  w.youtube  = '//www.youtube.com/embed/ATP3SyeNeY4'
+end
+
+media = Category.new.tap do |c|
+  c.winners = [swebus]
+  c.title   = 'Media Lions'
+end
+
+# ---------------- # PROMO & ACTIVATION LIONS # ---------------- #
+
+bud = Winner.new.tap do |w|
+  w.title    = 'Red Lights'
+  w.prize    = 'Silver - Promo & Activation'
+  w.id       = 'bud'
+  w.thumb    = '/img/bud.png'
+  w.client   = 'Budweiser'
+  w.agency   = "Anomaly"
+  w.category = 'Best NP Launch'
+  w.brief    = 'Engage Canadian hockey fans to overcome the loss of the NHL sponsorship agreement.'
+  w.solution = "Elevate the greatest moment in hockey, the goal with a physical, game-synched hockey goal light that goes off every time a fan’s favourite city scores. "
+  w.results  = 'Site visitors went from 13K to 451K, FB like increase by 373%, 30M earned impressions, lights sold out w/in 3 weeks.'
+  w.youtube  = '//www.youtube.com/embed/BV_jDWuE2tk'
+end
+
+wwf = Winner.new.tap do |w|
+  w.title    = 'The Ant Rally'
+  w.prize    = 'Gold - Promo & Activation'
+  w.id       = 'wwf'
+  w.thumb    = '/img/wwf.png'
+  w.client   = 'WWF'
+  w.agency   = "BBDO"
+  w.category = 'Experiential Marketing in a Promotional Campaign'
+  w.brief    = 'Create a relevant and never-before-seen action that raises awareness for the WWF rainforest projects on the occasion of the 50th anniversary of the WWF'
+  w.solution = "The Ant Rally is the first action against rainforest deforestation that gives a voice to the creatures that experience the destruction first hand. Their direct protest is what makes The Ant Rally new and unique."
+  w.results  = '"A lot" of coverage over 5 days and over 1M contacts.'
+  w.youtube  = '//www.youtube.com/embed/vzg51NO9ZrQ'
+end
+
+promo = Category.new.tap do |c|
+  c.winners = [bud, wwf]
+  c.title   = 'Promo & Activation Lions'
+end
+
+# ---------------- # FILM CRAFT LIONS # ---------------- #
+
+come4 = Winner.new.tap do |w|
+  w.title    = 'The Lover'
+  w.prize    = 'Bronze - Film Craft'
+  w.id       = 'come4'
+  w.thumb    = '/img/come4.png'
+  w.client   = 'Come4'
+  w.agency   = "Being"
+  w.category = 'Direction'
+  w.brief    = 'Fight sexual rights of sexual minorities.'
+  w.solution = "Tell the story of Philpot Asta, a disabled person who advocates the right for an active sexual life for people with disabilities, even if this means paying for sex."
+  w.results  = 'NA'
+  w.youtube  = '//www.youtube.com/embed/Hx8uOLmXaFY'
+end
+
+film = Category.new.tap do |c|
+  c.winners = [come4]
+  c.title   = 'Film Craft Lions'
+end
+
+# ---------------- # ALL CATEGORIES # ---------------- #
+
+all = Category.new.tap do |c|
+  c.winners = [oreo, intel, geox, jfk, adidas, coke, cinder, 
+               thunderclap, swebus, bud, wwf, come4]
+  c.title   = 'Holler Cannes Lions Case Studies 2013'
+end
+
 # ---------------- # APP # ---------------- #
 
 get '/' do
-  erb :index, locals: { categories: [cyber, innovation] }
+  # erb :index, locals: { categories: [cyber, brand, innovation, media, promo, film] }
+  erb :index, locals: { categories: [all] }
 end
 
 #  = Winner.new.tap do |w|
 #   w.title    = ''
+#   w.prize    = ''
 #   w.id       = ''
 #   w.thumb    = ''
 #   w.client   = ''
